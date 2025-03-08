@@ -1,13 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'video_model.dart';
+part of 'video.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VideoModelImpl _$$VideoModelImplFromJson(Map<String, dynamic> json) =>
-    _$VideoModelImpl(
+_$VideoImpl _$$VideoImplFromJson(Map<String, dynamic> json) => _$VideoImpl(
       id: json['id'] as String,
       videoUrl: json['videoUrl'] as String,
       thumbnailUrl: json['thumbnailUrl'] as String,
@@ -22,7 +21,7 @@ _$VideoModelImpl _$$VideoModelImplFromJson(Map<String, dynamic> json) =>
       isLocalFile: json['isLocalFile'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$VideoModelImplToJson(_$VideoModelImpl instance) =>
+Map<String, dynamic> _$$VideoImplToJson(_$VideoImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'videoUrl': instance.videoUrl,

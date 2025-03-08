@@ -34,6 +34,14 @@ dependencies:
   image: ^4.5.3
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  audioplayers: ^6.3.0
+  video_compress: ^3.1.4
+  just_audio: ^0.9.46
+  injectable: ^2.5.0
+  retrofit: ^4.4.2
+  crypto: ^3.0.6
+  visibility_detector: ^0.4.0+2
+  video_player_platform_interface: ^6.3.0
 
 dev_dependencies:
   flutter_test:
@@ -45,6 +53,8 @@ dev_dependencies:
   freezed: ^2.5.7
   json_serializable: ^6.9.0
   riverpod_generator: ^2.6.3
+  retrofit_generator: ^9.1.9
+  injectable_generator: ^2.6.2
 
 flutter:
   uses-material-design: true

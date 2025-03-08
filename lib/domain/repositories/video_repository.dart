@@ -1,16 +1,18 @@
 import 'dart:io';
 
-import 'package:tiktok_style_app/domain/entities/video_entity.dart';
+import '../entities/video/video.dart';
+
 
 abstract class VideoRepository {
-  Future<List<VideoEntity>> getVideos();
-  Future<List<VideoEntity>> getLocalVideos();
-  Future<List<VideoEntity>> getRemoteVideos();
-  Future<VideoEntity> uploadVideo({
+  Future<List<Video>> getVideos();
+  Future<List<Video>> getLocalVideos();
+  Future<List<Video>> getRemoteVideos();
+  Future<Video> uploadVideo({
     required File videoFile,
     required File thumbnailFile,
     required String description,
     String? audioName,
+    String? audioId,
   });
   Future<void> likeVideo(String videoId);
   Future<void> deleteVideo(String videoId);

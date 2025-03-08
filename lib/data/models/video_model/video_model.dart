@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:tiktok_style_app/domain/entities/video_entity.dart';
+
+import '../../../domain/entities/video/video.dart';
 
 part 'video_model.freezed.dart';
 part 'video_model.g.dart';
@@ -13,24 +14,24 @@ class VideoModel with _$VideoModel {
     required String description,
     required String username,
     String? audioName,
+    String? audioId,
     @Default(0) int likes,
     @Default(0) int comments,
     @Default(0) int shares,
     @Default(false) bool isLiked,
-    // Add a flag to indicate if this is a local file
     @Default(false) bool isLocalFile,
   }) = _VideoModel;
 
-  factory VideoModel.fromJson(Map<String, dynamic> json) =>
-      _$VideoModelFromJson(json);
+  factory VideoModel.fromJson(Map<String, dynamic> json) => _$VideoModelFromJson(json);
 
-  factory VideoModel.fromEntity(VideoEntity video) => VideoModel(
+  factory VideoModel.fromEntity(Video video) => VideoModel(
         id: video.id,
         videoUrl: video.videoUrl,
         thumbnailUrl: video.thumbnailUrl,
         description: video.description,
         username: video.username,
         audioName: video.audioName,
+        audioId: video.audioId,
         likes: video.likes,
         comments: video.comments,
         shares: video.shares,
@@ -40,13 +41,14 @@ class VideoModel with _$VideoModel {
 }
 
 extension VideoModelX on VideoModel {
-  VideoEntity toEntity() => VideoEntity(
+  Video toEntity() => Video(
         id: id,
         videoUrl: videoUrl,
         thumbnailUrl: thumbnailUrl,
         description: description,
         username: username,
         audioName: audioName,
+        audioId: audioId,
         likes: likes,
         comments: comments,
         shares: shares,
@@ -54,3 +56,4 @@ extension VideoModelX on VideoModel {
         isLocalFile: isLocalFile,
       );
 }
+

@@ -1,14 +1,15 @@
 import 'dart:io';
 
+import 'package:injectable/injectable.dart';
 import 'package:tiktok_style_app/data/models/video_model/video_model.dart';
-import 'package:tiktok_style_app/domain/entities/video_entity.dart';
 
+import '../../domain/entities/video/video.dart';
 import '../../domain/repositories/video_repository.dart';
-import '../data_sources/local_data_source.dart';
-import '../data_sources/remote_data_source.dart';
+import '../datasources/local_video_data_source.dart';
+import '../datasources/video_remote_data_source.dart';
 
 
-
+@LazySingleton(as: VideoRepository)
 class VideoRepositoryImpl implements VideoRepository {
   final VideoRemoteDataSource remoteDataSource;
   final LocalVideoDataSource localDataSource;
@@ -19,7 +20,7 @@ class VideoRepositoryImpl implements VideoRepository {
   });
 
   @override
-  Future<List<VideoEntity>> getVideos() async {
+  Future<List<Video>> getVideos() async {
     // Get both local and remote videos
     final localVideos = await localDataSource.getVideos();
     final remoteVideos = await remoteDataSource.getVideos();
@@ -32,23 +33,24 @@ class VideoRepositoryImpl implements VideoRepository {
   }
   
   @override
-  Future<List<VideoEntity>> getLocalVideos() async {
+  Future<List<Video>> getLocalVideos() async {
     final localVideos = await localDataSource.getVideos();
     return localVideos.map((model) => model.toEntity()).toList();
   }
   
   @override
-  Future<List<VideoEntity>> getRemoteVideos() async {
+  Future<List<Video>> getRemoteVideos() async {
     final remoteVideos = await remoteDataSource.getVideos();
     return remoteVideos.map((model) => model.toEntity()).toList();
   }
 
   @override
-  Future<VideoEntity> uploadVideo({
+  Future<Video> uploadVideo({
     required File videoFile,
     required File thumbnailFile,
     required String description,
     String? audioName,
+    String? audioId,
   }) async {
     // Save video to local storage
     final videoModel = await localDataSource.saveVideo(
@@ -56,6 +58,7 @@ class VideoRepositoryImpl implements VideoRepository {
       thumbnailFile: thumbnailFile,
       description: description,
       audioName: audioName,
+      audioId: audioId,
     );
     
     return videoModel.toEntity();
