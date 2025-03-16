@@ -42,8 +42,7 @@ class _AudioSelectionScreenState extends ConsumerState<AudioSelectionScreen>
   }
 
   Future<void> _loadInitialAudio() async {
-    setState(() {
-    });
+    setState(() {});
 
     try {
       if (widget.initialAudioId != null) {
@@ -56,8 +55,7 @@ class _AudioSelectionScreenState extends ConsumerState<AudioSelectionScreen>
     } catch (e) {
       print('Error loading initial audio: $e');
     } finally {
-      setState(() {
-      });
+      setState(() {});
     }
   }
 
