@@ -6,18 +6,13 @@ class LowMemoryVideoPlayer {
       LowMemoryVideoPlayer._internal();
   factory LowMemoryVideoPlayer() => _instance;
   LowMemoryVideoPlayer._internal();
-
   VideoPlayerController? _sharedController;
   String? _currentVideoId;
   bool _isInitialized = false;
   final List<Function(VideoPlayerController)> _onReadyCallbacks = [];
-
   static const int _maxActiveControllers = 1;
-
   final Map<String, VideoPlayerController> _controllers = {};
-
   final List<String> _preloadQueue = [];
-
   bool _lowMemoryMode = false;
 
   Future<VideoPlayerController?> getController({
